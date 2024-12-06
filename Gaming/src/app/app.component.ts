@@ -6,11 +6,12 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { SearchComponent } from '../search/search.component';
+import { CatalogComponent } from '../catalog/catalog.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent, HeaderComponent, FooterComponent, RegisterComponent, LoginComponent, SearchComponent],
+  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, RegisterComponent, LoginComponent, SearchComponent, CatalogComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

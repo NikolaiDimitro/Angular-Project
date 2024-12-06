@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+app-header {
+    background: linear-gradient(to right, #4a90e2, #9013fe);
+    padding: 10px 20px;
+    color: white;
+}
+
+app-footer {
+    background-color: transparent; /* Прави фона прозрачен */
+    padding: 10px 20px;
+    color: inherit; /* Наследява цвета на текста от основния стил */
+    text-align: center;
+    border-top: none; /* Премахва всякакви граници */
+  }
+  
