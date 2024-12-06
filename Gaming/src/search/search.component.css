@@ -1,0 +1,135 @@
+/* Стилове за полето за търсене */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px; /* Разстояние от хедъра */
+    padding: 10px;
+    width: 100%;
+  }
+  
+  /* Полето за търсене */
+  .search-box {
+    width: 60%; /* Ширина на полето за търсене */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  /* Бутонът за търсене */
+  .search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #fa8484, #d76b6b);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .search-button:hover {
+    background: linear-gradient(135deg, #d76b6b, #fa8484);
+  }
+  
+  /* Стилове за контейнера на игрите */
+  .games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px; /* Разстояние от полето за търсене */
+  }
+  
+  /* Стилове за всяка игра (резултат) */
+  .game-card {
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+    min-height: 300px;
+    width: calc(33.33% - 20px); /* 3 игри на ред */
+    margin-top: 20px; /* Разстояние от полето за търсене */
+  }
+  
+  /* Стилове за изображението на играта */
+  .game-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Стилове за заглавието на играта */
+  .game-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  /* Стилове за бутона "Подробности" */
+  .details-button {
+    background: linear-gradient(135deg, #fa8484, #d76b6b);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    animation: move 1.5s infinite alternate;
+  }
+  
+  @keyframes move {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-5px);
+    }
+  }
+  
+  /* Мобилен изглед */
+  @media screen and (max-width: 768px) {
+    .game-card {
+      width: 100%; /* 1 игра на ред на мобилни устройства */
+      min-height: 280px;
+    }
+  
+    .game-image {
+      margin-bottom: 15px;
+    }
+  
+    .game-title {
+      font-size: 16px;
+    }
+  
+    .details-button {
+      font-size: 16px;
+    }
+  
+    .search-box {
+      width: 80%; /* Ширина на полето за търсене при мобилен изглед */
+    }
+  }
+  
+  /* Таблетен изглед (до 1024px) */
+  @media screen and (max-width: 1024px) {
+    .game-card {
+      width: calc(50% - 20px); /* 2 игри на ред на таблети */
+      min-height: 300px;
+    }
+  }
+  
+  /* Десктоп изглед */
+  @media screen and (min-width: 1025px) {
+    .game-card {
+      width: calc(33.33% - 20px); /* 3 игри на ред на десктопи */
+      min-height: 320px;
+    }
+  }
+  

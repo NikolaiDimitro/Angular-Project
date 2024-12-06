@@ -1,44 +1,38 @@
-/* Общи стилове */
 body {
-  font-family: 'Roboto', sans-serif; /* Шрифт Roboto за целия сайт */
+  font-family: 'Roboto', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  color: white; /* Цветът на текста ще бъде бял */
+  color: white;
 }
 
-/* Секция за кратка информация за сайта */
-.info-section {
-  background: linear-gradient(120deg, #84fab0, #8fd3f4, #f1c40f); /* Добавен градиент, който се прелива и включва златисто */
-  border-radius: 10px;
-  padding: 40px;
-  margin: 20px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Центрира текста */
-  width: 80%; /* Намаляваме ширината, за да не бъде секцията прекалено голяма */
-  margin-left: auto;
-  margin-right: auto; /* Центрира секцията на екрана */
-}
-
-/* Секция за снимката */
 .image-section {
-  margin: 40px auto;
+  margin-top: 150px; 
+  margin-bottom: 20px; 
   text-align: center;
+  max-width: 12000px;
+  min-width: 1200px; 
+  width: 100%; 
+  height: 500px; 
+  padding: 20px; 
+  box-sizing: border-box; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 
-.image-section img {
-  width: 80%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  object-fit: cover; /* За да се мащабира снимката пропорционално */
+.image-section iframe {
+  width: 90%; 
+  height: 500px; 
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px; 
 }
 
-/* Секцията с основни раздели - 3 секции на равномерно разстояние */
 .sections-overview {
   display: flex;
-  justify-content: space-between; /* Разположението на секциите да е една до друга */
-  gap: 30px; /* Разстояние между секциите */
+  justify-content: space-between;
+  gap: 30px;
   padding: 40px 0;
 }
 
@@ -46,17 +40,16 @@ body {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 30%; /* За да се подредят трите секции една до друга */
+  width: 30%;
   border-radius: 10px;
-  background: linear-gradient(135deg, #3498db, #9b59b6); /* Преливащ фон от синьо към лилаво */
+  background: linear-gradient(135deg, #3498db, #9b59b6);
   transition: background 0.3s ease;
 }
 
 .section-card:hover {
-  background: linear-gradient(135deg, #8e44ad, #3498db); /* Преливане при задържане */
+  background: linear-gradient(135deg, #8e44ad, #3498db);
 }
 
-/* Променен фон за "Каталог" и "Новини" */
 .catalog-news-section {
   display: flex;
   justify-content: space-between;
@@ -68,14 +61,14 @@ body {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 48%; /* За да са два елемента на ред */
+  width: 48%;
   border-radius: 10px;
-  background: linear-gradient(135deg, #f39c12, #f1c40f); /* Преливане от златисто към ярко жълто */
+  background: linear-gradient(135deg, #f39c12, #f1c40f);
   transition: background 0.3s ease;
 }
 
 .catalog-news-card:hover {
-  background: linear-gradient(135deg, #f39c12, #e67e22); /* Преливане при задържане */
+  background: linear-gradient(135deg, #f39c12, #e67e22);
 }
 
 .catalog-news-card h2 {
@@ -105,7 +98,6 @@ body {
   background-color: #d76b6b;
 }
 
-/* Мобилна версия на секциите */
 @media screen and (max-width: 768px) {
   .catalog-news-section {
     flex-direction: column;
@@ -118,9 +110,8 @@ body {
   }
 }
 
-/* Рамки и фон за всяка игра в подсекция */
 .game-subsection {
-  background: linear-gradient(135deg, #84fab0, #8fd3f4); /* Преливане от светло зелено към светло синьо */
+  background: linear-gradient(135deg, #84fab0, #8fd3f4);
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
@@ -134,8 +125,8 @@ body {
   border-radius: 10px;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: white; /* Бял фон за игрите */
-  background: linear-gradient(135deg, #3498db, #9b59b6); /* Преливащ фон от синьо към лилаво */
+  background-color: white;
+  background: linear-gradient(135deg, #3498db, #9b59b6);
 }
 
 .game-card img {
@@ -150,7 +141,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Стилове за бутоните */
 .details-btn {
   background-color: #fa8484;
   color: white;
@@ -166,23 +156,6 @@ body {
   background-color: #d76b6b;
 }
 
-/* Секция за кратка информация за сайта */
-.info-section h1 {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.info-section p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto; /* Центрира параграфа */
-}
-
-/* Мобилна версия на секциите */
 @media screen and (max-width: 768px) {
   .sections-overview {
     flex-direction: column;
@@ -194,39 +167,9 @@ body {
   }
 }
 
-/* Секция с бутоните Каталог и Новини */
-.info-section .buttons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.info-section .buttons a {
-  background: linear-gradient(135deg, #3498db, #9b59b6); /* Преливащ фон от синьо към лилаво */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #333;
   color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.info-section .buttons a:hover {
-  background: linear-gradient(135deg, #8e44ad, #3498db); /* Преливане при задържане */
-  transform: scale(1.05);
-}
-
-/* Мобилна версия на бутоните */
-@media screen and (max-width: 768px) {
-  .info-section .buttons {
-    flex-direction: column;
-  }
-
-  .info-section .buttons a {
-    width: 100%;
-    margin-bottom: 20px;
-  }
 }
