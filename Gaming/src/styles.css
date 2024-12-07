@@ -3,15 +3,12 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    /* Минималната височина е 100% от екрана */
     display: flex;
     flex-direction: column;
     background: url('./assets/images/199517.jpg') no-repeat center center/cover;
-    /* Снимка за фон */
     font-family: Arial, sans-serif;
     color: #333;
-    overflow-x: hidden;
-    /* Предотвратява хоризонтално скролиране */
+    overflow-x: hidden; /* Предотвратява хоризонтално скролиране */
 }
 
 /* Контейнер за основното съдържание */
@@ -22,30 +19,13 @@ body {
     justify-content: flex-start;
     align-items: center;
     padding: 20px;
-    margin-top: 60px;
-    /* Добавено пространство за хедъра */
-    flex-grow: 1;
-    /* Това ще позволи на контейнера да расте и да заема цялото пространство */
-    overflow: hidden;
-    /* Това предотвратява разширяването на контейнера извън екрана */
+    margin-top: 60px; /* Пространство за хедъра */
+    margin-bottom: 40px; /* Добавено разстояние между формата и футъра */
+    flex-grow: 1; /* Позволява на контейнера да расте */
+    overflow: hidden; /* Предотвратява разширяване извън екрана */
 }
 
-/* Футърът, който трябва да остане в долната част */
+/* Футърът */
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(90deg, #1e90ff, #ff1493);
-    padding: 20px;
-    text-align: center;
-    color: white;
-    margin-top: auto;
-    /* Това ще премести футъра до долната част на екрана */
-}
-
-/* За да премахнеш маргините и падингите в футъра */
-footer * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    display: flex; /* Възстановява футъра */
 }

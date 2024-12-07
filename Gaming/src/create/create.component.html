@@ -1,0 +1,53 @@
+  <div class="create-game-container">
+    <h2>Създайте нова игра</h2>
+
+    <form id="createGameForm">
+      <div class="form-group">
+        <label for="name">Име на играта:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="year">Година на излизане:</label>
+        <input type="number" id="year" name="year" required />
+      </div>
+
+      <div class="form-group">
+        <label for="studio">Студио:</label>
+        <input type="text" id="studio" name="studio" required />
+      </div>
+
+      <div class="form-group">
+        <label for="image">Снимка (URL):</label>
+        <input type="text" id="image" name="image" required />
+      </div>
+
+      <div class="form-group">
+        <label for="genre">Жанр:</label>
+        <select id="genre" name="genre" required>
+          <option value="action">Екшън</option>
+          <option value="adventure">Приключенски</option>
+          <option value="rpg">Ролеви игри</option>
+          <option value="strategy">Стратегия</option>
+          <option value="simulator">Симулатор</option>
+          <option value="sports">Спортни игри</option>
+          <option value="mobile">Мобилни игри</option>
+          <option value="moba">MOBA</option>
+          <option value="puzzle">Пъзели</option>
+          <option value="shooter">Шутъри</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="videoLink">Линк за видео:</label>
+        <input type="text" id="videoLink" name="videoLink" required />
+      </div>
+
+      <button type="submit">Създайте играта</button>
+    </form>
+  </div>

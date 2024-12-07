@@ -8,11 +8,14 @@ import { LoginComponent } from '../login/login.component';
 import { SearchComponent } from '../search/search.component';
 import { CatalogComponent } from '../catalog/catalog.component';
 import { DetailsComponent } from '../details/details.component';
+import { CreateComponent } from '../create/create.component';
+import { EditComponent } from '../edit/edit.component';
+import { ErrorComponent } from "../error/error.component";
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, RegisterComponent, LoginComponent, SearchComponent, CatalogComponent, DetailsComponent],
+  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, RegisterComponent, LoginComponent, SearchComponent, CatalogComponent, DetailsComponent, CreateComponent, EditComponent, ErrorComponent],
   templateUrl:'./app.component.html',
   styleUrl: './app.component.css'
 })

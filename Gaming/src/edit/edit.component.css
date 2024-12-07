@@ -1,0 +1,86 @@
+/* Контейнер за формата */
+.game-form-container {
+    padding: 80px 20px; /* Допълнително разстояние */
+    max-width: 700px; /* Увеличена широчина */
+    margin: 250px auto; /* Центриране с разстояние отгоре и отдолу */
+    background-color: #fff; /* Бял фон за формата */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Стилове за формата */
+  .game-form {
+    padding: 30px; /* Вътрешно разстояние */
+  }
+  
+  .game-form label {
+    display: block; /* Етикетите са блокови елементи */
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .game-form input,
+  .game-form select,
+  .game-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Стил за бутона */
+  .game-form button {
+    background: linear-gradient(45deg, #84d0ff, #d39eff);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: block;
+    margin: 20px auto 0; /* Центриране и отстояние от полетата */
+  }
+  
+  /* Ефект при задържане на бутона */
+  .game-form button:hover {
+    background: linear-gradient(45deg, #d39eff, #84d0ff);
+    transform: rotate(-10deg); /* Леко накланяне */
+  }
+  
+  /* Текстова област */
+  .game-form textarea {
+    height: 150px;
+    resize: vertical; /* Позволено преоразмеряване по височина */
+  }
+  
+  /* Dropdown меню */
+  .game-form select {
+    height: 40px;
+  }
+  
+  /* Стил за тялото */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  /* Хедър */
+  header {
+    text-align: center;
+    margin-bottom: 30px; /* Разстояние под хедъра */
+  }
+  
+  /* Футър */
+  footer {
+    text-align: center;
+    margin-top: 30px; /* Разстояние над футъра */
+    color: #777;
+    font-size: 14px;
+  }
+  

@@ -39,6 +39,35 @@
   margin-top: 10px;
 }
 
+/* Бутон за харесване */
+.like-button-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.like-button {
+  background: linear-gradient(45deg, #84d0ff, #d39eff); /* Светъл градиент за бутона */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  margin-right: 10px;
+}
+
+.like-button:hover {
+  background: linear-gradient(45deg, #d39eff, #84d0ff); /* Обратен градиент за hover */
+}
+
+.like-count {
+  font-size: 18px;
+  color: #4d0a5e;
+  font-weight: bold;
+}
+
 /* Видеото сега е част от game-details */
 .game-details iframe {
   max-width: 100%;
