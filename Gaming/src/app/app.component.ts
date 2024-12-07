@@ -7,12 +7,13 @@ import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { SearchComponent } from '../search/search.component';
 import { CatalogComponent } from '../catalog/catalog.component';
+import { DetailsComponent } from '../details/details.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, RegisterComponent, LoginComponent, SearchComponent, CatalogComponent],
-  templateUrl: './app.component.html',
+  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent, RegisterComponent, LoginComponent, SearchComponent, CatalogComponent, DetailsComponent],
+  templateUrl:'./app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
