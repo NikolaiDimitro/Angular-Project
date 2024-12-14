@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,5 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  @ViewChild('loginForm') form: NgForm | undefined;
 
 }
