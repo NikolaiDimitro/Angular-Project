@@ -1,18 +1,16 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  imports: [RouterLink],
+  providers: [HttpClient]
 })
-export class HeaderComponent implements AfterViewInit {
-  ngAfterViewInit() {
-    const tiltElements = document.querySelectorAll('.tilt-effect');
-    tiltElements.forEach((element) => {
-      element.addEventListener('mouseover', () => {
-        const randomAngle = (Math.random() * 20 - 10).toFixed(1); // Генерира произволен наклон (-10 до 10 градуса)
-        (element as HTMLElement).style.setProperty('--tilt-angle', `${randomAngle}deg`);
-      });
-    });
-  }
+
+export class HeaderComponent {
+
+
 }
