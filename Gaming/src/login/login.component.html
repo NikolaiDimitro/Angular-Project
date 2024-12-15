@@ -3,26 +3,49 @@
   <div class="container">
     <div class="login-form">
       <h2>Вход</h2>
-      <form $lognForm="ngForm">
+      <form #loginForm="ngForm" (ngSubmit)="formSubmitHandler()">
+
         <div class="form-group">
           <label for="email">Имейл</label>
-          <input type="text"
-          id="email"
-          name="email"
-          required
-          email
-          ngModel
-          #emailInput="ngModel">
+          <input type="text" id="email" name="email" required email ngModel #emailInput="ngModel">
         </div>
+
+        @if(emailInput.touched){
+        <div>
+          @if(emailInput.errors?.['required']){
+          <div style="color: red">Email is required!</div>
+          }
+          <!--  -->
+          @if(emailInput.errors?.['email']){
+          <div style="color: red">Email is not VALID!</div>
+          }
+        </div>
+        }
+
         <div class="form-group">
           <label for="password">Парола</label>
-          <input type="password" id="password" name="password" required>
+          <input type="password" id="password" name="password" ngModel #passwordInput="ngModel" required minlength="6">
         </div>
-        <button type="submit" class="submit-btn">Влезте</button>
+
+        @if(passwordInput.touched){
+        <div>
+          @if(passwordInput.errors?.['required']){
+          <div style="color: red">Password is required!</div>
+          }
+          <!--  -->
+          @if(passwordInput.errors?.['minlength']){
+          <div style="color: red">Password must contain 6 characters</div>
+          }
+        </div>
+        }
+
+        <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">Влезте</button>
+
       </form>
+
       <p>Нямате акаунт? <a href="/register">Регистрирайте се тук</a></p>
+
     </div>
   </div>
 
 </body>
- 

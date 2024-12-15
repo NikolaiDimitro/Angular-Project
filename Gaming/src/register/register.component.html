@@ -1,37 +1,79 @@
-<!DOCTYPE html>
-<html lang="bg">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-    <link rel="stylesheet" href="./register.component.css">
-</head>
-
 <body>
     <div class="form-container">
-        <h2>Регистрация</h2>
-        <form>
-            <div class="form-group">
-                <label for="username">Потребителско име</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Имейл</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Парола</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Потвърдете паролата</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-            </div>
-            <button type="submit" class="submit-btn">Регистрирай се</button>
-        </form>
-        <p>Вече имате акаунт? <a href="/login">Влезте тук</a></p>
+      <h2>Регистрация</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+          <label for="username">Потребителско име</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            required
+            placeholder="Име"
+          />
+          @if(registerForm.get('username')?.touched) {
+            @if(registerForm.get('username')?.errors?.['required']) {
+              <div style="color: red">Потребителското име е задължително!</div>
+            }
+            @if(registerForm.get('username')?.errors?.['minlength']) {
+              <div style="color: red">Минималната дължина е 3 символа.</div>
+            }
+          }
+        </div>
+        <div class="form-group">
+          <label for="email">Имейл</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            required
+            placeholder="Имейл"
+          />
+          @if(registerForm.get('email')?.touched) {
+            @if(registerForm.get('email')?.errors?.['required']) {
+              <div style="color: red">Имейлът е задължителен!</div>
+            }
+            @if(registerForm.get('email')?.errors?.['email']) {
+              <div style="color: red">Невалиден имейл адрес!</div>
+            }
+          }
+        </div>
+        <div class="form-group">
+          <label for="password">Парола</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            required
+            placeholder="Парола"
+          />
+          @if(registerForm.get('password')?.touched) {
+            @if(registerForm.get('password')?.errors?.['required']) {
+              <div style="color: red">Паролата е задължителна!</div>
+            }
+            @if(registerForm.get('password')?.errors?.['minlength']) {
+              <div style="color: red">Минималната дължина е 6 символа.</div>
+            }
+          }
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Потвърдете паролата</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            required
+            placeholder="Повторете паролата"
+          />
+          @if(registerForm.errors?.['mismatch']) {
+            <div style="color: red">Паролите не съвпадат!</div>
+          }
+        </div>
+        <button type="submit" class="submit-btn" [disabled]="registerForm.invalid">
+          Регистрирай се
+        </button>
+      </form>
+      <p>Вече имате акаунт? <a routerLink="/login">Влезте тук</a></p>
     </div>
-</body>
-
-</html>
+  </body>
+  

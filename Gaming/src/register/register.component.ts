@@ -1,37 +1,61 @@
+// register.component.ts
 import { Component } from '@angular/core';
-import { User } from '../types/userType';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../service/request.service';
-import { FormsModule } from '@angular/forms'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  registerForm: FormGroup;
 
-// Хардкоднати данни на потребителя
-private user: User = {
-  username: 'Ivancho',
-  email: 'ivancho@abv.bg',
-  password: '2222'
-};
+  constructor(private fb: FormBuilder, private authService: AuthService, private router:Router) {
+    this.registerForm = this.fb.group(
+      {
+        username: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validators: this.passwordMatchValidator,
+      }
+    );
+  }
 
-constructor(private authService: AuthService) {}
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
+  }
 
-// Регистриране на потребител
-register() {
-  this.authService.registerUser(this.user).subscribe({
-    next: (uid) => {
-      console.log('Регистриран потребител с UID:', uid);
-      // Допълнителни действия след регистрация
-    },
-    error: (err) => {
-      console.error('Грешка при регистрация:', err);
+  handleSubmit() {
+    if (this.registerForm.valid) {
+      this.register();
+    } else {
+      console.log('Формата е невалидна!');
     }
-  });
+  }
+
+  register() {
+    const user = this.registerForm.value;
+    this.authService.registerUser(user).subscribe({
+      next: (user) => {
+        console.log('Регистриран потребител с UID:', user.uid); // user е тип User
+        // Може да извършиш допълнителни действия след регистрация
+        this.router.navigate(['']);
+      },
+      error: (err) => {
+        console.error('Грешка при регистрация:', err);
+      },
+    });
+  }
 }
 
-}
