@@ -1,19 +1,11 @@
 <div class="games-container">
+  @for (game of games; track game){
     <div class="game-card">
-      <img src="../assets/images/sdsd.jpg" alt="Игра 1" class="game-image" />
-      <h3 class="game-title">Игра 1</h3>
-      <button class="details-button">Подробности</button>
-    </div> 
-  
-    <div class="game-card">
-      <img src="../assets/images/dqsdsq.jpg" alt="Игра 2" class="game-image" />
-      <h3 class="game-title">Игра 2</h3>
-      <button class="details-button">Подробности</button>
+      @if (game){
+        <img [src]="game.image" alt="{{ game.name }}" class="game-image" />
+        <h3 class="game-title">{{ game.name }}</h3>
+        <button class="details-button" (click)="viewDetails(game.id ? game.id: '')">Подробности</button>
+      }
     </div>
-  
-    <div class="game-card">
-      <img src="../assets/images/Untitled.jpg" alt="Игра 3" class="game-image" />
-      <h3 class="game-title">Игра 3</h3>
-      <button class="details-button">Подробности</button>
-    </div>
-  </div>
+  }
+</div>
