@@ -1,48 +1,60 @@
 /* Контейнер за цялата страница */
 .game-details-container {
-  padding: 150px;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px; /* Разстояние между хедъра и контейнера */
+  max-width: 1000px;
+  margin: 100 auto; /* Центрира контейнера по хоризонтала */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрира съдържанието по хоризонтала */
+  gap: 30px;
+  background: linear-gradient(135deg, #9ec9ff, #b19cd9, #f4bbff); /* Светъл градиент */
+  border-radius: 10px;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Стилове за информацията за играта */
 .game-info {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #9ec9ff, #b19cd9, #f4bbff); /* Светъл градиент */
-  padding: 20px;
-  color: #333; /* Тъмен текст за четимост */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Лек сенчест ефект */
+  justify-content: center; /* Центрира съдържанието по хоризонтала */
+}
+
+.game-image-container {
+  flex-basis: 300px;
+  margin-right: 20px;
 }
 
 .game-image {
   max-width: 100%;
   border-radius: 10px;
-  margin-right: 20px;
-  width: 100%;
-  max-width: 300px;
   object-fit: cover;
 }
 
 .game-details {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрира текста */
 }
 
 .game-title {
   font-size: 24px;
   margin-bottom: 10px;
+  text-align: center; /* Центрира заглавието */
 }
 
 .game-description {
   margin-top: 10px;
+  text-align: center; /* Центрира описанието */
 }
 
 /* Бутон за харесване */
 .like-button-container {
   display: flex;
   align-items: center;
+  justify-content: center; /* Центрира бутоните */
   margin-top: 20px;
 }
 
@@ -68,74 +80,23 @@
   font-weight: bold;
 }
 
-/* Видеото сега е част от game-details */
-.game-details iframe {
+/* Видеото за играта */
+.game-video {
+  display: flex;
+  flex-direction: column; /* Надписът ще се покаже над видеото */
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px; /* Увеличено разстояние между видеото и предходните елементи */
+}
+
+.video-title {
+  font-size: 18px;
+  margin-bottom: 10px; /* Разстояние между надписа и видеото */
+  color: #333;
+  text-align: center;
+}
+
+.game-video iframe {
   max-width: 100%;
   border-radius: 10px;
-  margin-top: 20px;
-}
-
-/* Секция за добавяне на коментари */
-.add-comment-section {
-  margin-top: 30px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #e6f7ff, #d9c2ff, #ffe6f2); /* Светъл градиент */
-  padding: 20px;
-  color: #333; /* Тъмен текст за контраст */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative; /* За позициониране на заглавието */
-}
-
-.add-comment-section h3 {
-  color: #4d0a5e; /* Ярък лилав цвят, за да изпъква */
-  background: white; /* Фон зад текста */
-  display: inline-block; /* Текста има фон само около себе си */
-  padding: 5px 10px; /* Разстояние около текста */
-  border-radius: 5px; /* Заоблени ъгли */
-  font-size: 18px; /* По-голям текст за по-добра видимост */
-  margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.comment-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.submit-comment-button {
-  background: linear-gradient(45deg, #84d0ff, #d39eff); /* Светъл градиент за бутона */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
-}
-
-.submit-comment-button:hover {
-  background: linear-gradient(45deg, #d39eff, #84d0ff); /* Обратен градиент за hover */
-}
-
-/* Секция за вече дадени коментари */
-.existing-comments {
-  margin-top: 30px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #b19cd9, #9ec9ff); /* Малко по-тъмен градиент */
-  padding: 20px;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.comment {
-  background: linear-gradient(135deg, #f4bbff, #d9c2ff); /* Лек градиент за коментарите */
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: #333; /* Тъмен текст за контраст */
 }

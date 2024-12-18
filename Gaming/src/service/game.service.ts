@@ -1,5 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, doc, getDoc, updateDoc, arrayUnion, increment, getFirestore, DocumentReference, orderBy, query, getDocs } from 'firebase/firestore';
+import {
+  Firestore,
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+  increment,
+  getFirestore,
+  DocumentReference,
+  orderBy,
+  query,
+  getDocs,
+  limit,
+  deleteDoc,
+} from 'firebase/firestore';
 import { Observable, from } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Game } from '../interfaces/gameInterface';
@@ -16,7 +32,7 @@ export class GameService {
   constructor() {}
 
   getAllGames(): Observable<Game[]> {
-    const gamesQuery = query(this.gamesCollectionRef, orderBy('name')); // Можеш да сортираш по каквото искаш (тук по 'name')
+    const gamesQuery = query(this.gamesCollectionRef, orderBy('name'));
     return from(getDocs(gamesQuery)).pipe(
       map((querySnapshot) => {
         const games: Game[] = [];
@@ -33,7 +49,6 @@ export class GameService {
   }
 
   addGame(game: Game): Observable<DocumentReference> {
-    console.log('Adding game:', game); // Дебъг
     return from(
       addDoc(this.gamesCollectionRef, {
         ...game,
@@ -43,10 +58,7 @@ export class GameService {
         comments: [],
       })
     ).pipe(
-      map((res) => {
-        console.log('Game added successfully:', res);
-        return res;
-      }),
+      map((res) => res),
       catchError((error) => {
         console.error('Error adding game:', error);
         throw error;
@@ -62,6 +74,10 @@ export class GameService {
           return { id: docSnap.id, ...docSnap.data() } as Game;
         }
         return null;
+      }),
+      catchError((error) => {
+        console.error('Error getting game by ID:', error);
+        throw error;
       })
     );
   }
@@ -73,15 +89,94 @@ export class GameService {
         likedByUsers: arrayUnion(userId),
         likesCount: increment(1),
       })
+    ).pipe(
+      catchError((error) => {
+        console.error('Error liking game:', error);
+        throw error;
+      })
     );
   }
 
-  addComment(gameId: string, comment: UserComment): Observable<void> {
+  addCommentToGame(gameId: string, comment: UserComment): Observable<void> {
     const gameDocRef = doc(this.firestore, 'games', gameId);
     return from(
       updateDoc(gameDocRef, {
         comments: arrayUnion(comment),
         commentsCount: increment(1),
+      })
+    ).pipe(
+      catchError((error) => {
+        console.error('Error adding comment to game:', error);
+        throw error;
+      })
+    );
+  }
+
+  getCommentsForGame(gameId: string): Observable<UserComment[]> {
+    const gameDocRef = doc(this.firestore, 'games', gameId);
+    return from(getDoc(gameDocRef)).pipe(
+      map((docSnap) => {
+        if (docSnap.exists()) {
+          const gameData = docSnap.data() as Game;
+          return gameData.comments || [];
+        }
+        return [];
+      }),
+      catchError((error) => {
+        console.error('Error getting comments for game:', error);
+        throw error;
+      })
+    );
+  }
+
+  deleteGame(gameId: string): Observable<void> {
+    const gameDocRef = doc(this.firestore, 'games', gameId);
+    return from(deleteDoc(gameDocRef)).pipe(
+      catchError((error) => {
+        console.error('Error deleting game:', error);
+        throw error;
+      })
+    );
+  }
+
+  getTopLikedGames(limitNumber: number): Observable<Game[]> {
+    const gamesQuery = query(
+      this.gamesCollectionRef,
+      orderBy('likesCount', 'desc'),
+      limit(limitNumber)
+    );
+    return from(getDocs(gamesQuery)).pipe(
+      map((querySnapshot) => {
+        const games: Game[] = [];
+        querySnapshot.forEach((docSnap) => {
+          games.push({ id: docSnap.id, ...docSnap.data() } as Game);
+        });
+        return games;
+      }),
+      catchError((error) => {
+        console.error('Error getting top liked games:', error);
+        throw error;
+      })
+    );
+  }
+
+  getTopCommentedGames(limitNumber: number): Observable<Game[]> {
+    const gamesQuery = query(
+      this.gamesCollectionRef,
+      orderBy('commentsCount', 'desc'),
+      limit(limitNumber)
+    );
+    return from(getDocs(gamesQuery)).pipe(
+      map((querySnapshot) => {
+        const games: Game[] = [];
+        querySnapshot.forEach((docSnap) => {
+          games.push({ id: docSnap.id, ...docSnap.data() } as Game);
+        });
+        return games;
+      }),
+      catchError((error) => {
+        console.error('Error getting top commented games:', error);
+        throw error;
       })
     );
   }

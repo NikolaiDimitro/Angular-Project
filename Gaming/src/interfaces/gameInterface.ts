@@ -9,6 +9,7 @@ export interface Game {
   genre: string;
   description: string;
   videoLink: string;
+  userId: string
   likesCount: number; // Променено на задължително число (не може да бъде undefined)
   likedByUsers: string[]; // Променено на празен масив по подразбиране
   commentsCount: number; // Променено на задължително число

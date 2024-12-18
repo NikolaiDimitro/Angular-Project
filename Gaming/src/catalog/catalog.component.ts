@@ -26,6 +26,6 @@ export class CatalogComponent {
 
   // Метод за навигация към страницата с подробности за игра
   viewDetails(gameId: string): void {
-    this.router.navigate(['/details/:id', gameId]); // Навигираме към детайлите на играта
+    this.router.navigate(['/details/', gameId]); // Навигиране към детайлите на играта
   }
 }
