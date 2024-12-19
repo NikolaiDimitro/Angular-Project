@@ -1,11 +1,3 @@
-<!-- Хедър -->
-<header>
-  <div class="header-content">
-    <h1>Игрите сайт</h1>
-    <!-- Други елементи на хедъра -->
-  </div>
-</header>
-
 <!-- Контейнер за информацията за играта -->
 <div class="game-details-container">
   <!-- Информация за играта -->
@@ -26,27 +18,26 @@
       </p>
 
       <!-- Бутон за харесване -->
-      <div class="like-button-container">
-        <button class="like-button" (click)="likeGame()">👍 Харесва ми!</button>
-        <span class="like-count">{{ game?.likesCount }}</span>
-      </div>
-
-      <!-- Показваме бутоните за редактиране и изтриване само ако потребителят е създател -->
-      @if(isOwner) {
-        <div>
-          <button (click)="editGame()">Редактирай</button>
-          <button (click)="deleteGame()">Изтрий</button>
+      @if (!isOwner) {
+        <div class="like-button-container">
+          <button class="like-button" (click)="likeGame()">👍 Харесва ми!</button>
+          <span class="like-count">{{ game?.likesCount }}</span>
         </div>
       }
-
     </div>
   </div>
 
   <!-- Видеото за играта -->
-  <!-- Видеото за играта -->
-<div class="game-video">
-  <h3 class="video-title">Вижте видеото за играта:</h3>
-  <iframe width="560" height="315" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
-</div>
+  <div class="game-video">
+    <h3 class="video-title">Вижте видеото за играта:</h3>
+    <iframe width="560" height="315" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+  </div>
 
+  <!-- Бутоните за редактиране и изтриване, само ако потребителят е създател -->
+  @if (isOwner) {
+    <div class="edit-delete-buttons">
+      <button class="edit-button" (click)="editGame()">Редактирай</button>
+      <button class="delete-button" (click)="deleteGame()">Изтрий</button>
+    </div>
+  }
 </div>

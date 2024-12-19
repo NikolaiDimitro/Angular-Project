@@ -11,44 +11,32 @@
       ></iframe>
     </div>
 
-    <!-- Секции с основни раздели - 2 секции на равномерно разстояние -->
+    <!-- Секция за Най-харесвани игри -->
     <div class="sections-overview">
-      <!-- Най-харесвани -->
       <div class="section-card">
         <h2>Най - харесвани</h2>
-        <div class="game-subsection" *for="let game of topLikedGames">
-          @if (game) {
-            <div class="game-card">
-              <img [src]="game.image" [alt]="game.name" class="game-image" />
-              <p>{{ game.name }}</p>
-              <button
-                class="details-btn"
-                (click)="viewGameDetails(game.id)"
-              >
-                Подробности
-              </button>
-            </div>
-          }
-        </div>
-      </div>
 
-      <!-- Най-коментирани -->
-      <div class="section-card">
-        <h2>Най - коментирани</h2>
-        <div class="game-subsection" *for="let game of topCommentedGames">
-          @if (game) {
-            <div class="game-card">
-              <img [src]="game.image" [alt]="game.name" class="game-image" />
-              <p>{{ game.name }}</p>
-              <button
-                class="details-btn"
-                (click)="viewGameDetails(game.id)"
-              >
-                Подробности
-              </button>
-            </div>
-          }
-        </div>
+        <!-- Проверка дали има игри -->
+        @if(topLikedGames && topLikedGames.length > 0) {
+          <div class="game-subsection">
+            @for(game of topLikedGames.slice(0, 3); track game) {
+              <div class="game-card">
+                <img [src]="game.image" [alt]="game.name" class="game-image" />
+                <p>{{ game.name }}</p>
+                <button
+                  class="details-btn"
+                  (click)="game.id ? viewGameDetails(game.id) : null"
+                >
+                  Подробности
+                </button>
+              </div>
+            }
+          </div>
+        } @else {
+          <div>
+            <p>Няма налични игри за показване.</p>
+          </div>
+        }
       </div>
     </div>
   </div>

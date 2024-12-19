@@ -1,38 +1,149 @@
-<div class="game-form-container">
-    <form class="game-form">
-      <label for="game-name">Име:</label>
-      <input type="text" id="game-name" name="game-name" placeholder="Въведете име на играта" required>
-  
-      <label for="release-year">Година:</label>
-      <input type="number" id="release-year" name="release-year" min="1975" max="2024" placeholder="Въведете година на излизане" required>
-  
+<div class="edit-game-container">
+  <h2>Редактиране на игра</h2>
+
+  <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">Име на играта:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        required
+        minlength="3"
+        placeholder="Име на играта"
+      />
+      @if (gameForm.get('name')?.touched) {
+        @if (gameForm.get('name')?.errors?.['required']) {
+          <div style="color: red">Името на играта е задължително!</div>
+        }
+        @if (gameForm.get('name')?.errors?.['minlength']) {
+          <div style="color: red">Името трябва да бъде поне 3 символа.</div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="year">Година на излизане:</label>
+      <input
+        type="number"
+        id="year"
+        formControlName="year"
+        required
+        placeholder="Година"
+      />
+      @if (gameForm.get('year')?.touched) {
+        @if (gameForm.get('year')?.errors?.['required']) {
+          <div style="color: red">Годината е задължителна!</div>
+        }
+        @if (gameForm.get('year')?.errors?.['min']) {
+          <div style="color: red">Годината трябва да бъде по-голяма от 1900.</div>
+        }
+        @if (gameForm.get('year')?.errors?.['max']) {
+          <div style="color: red">Годината трябва да бъде текуща или по-малка.</div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
       <label for="studio">Студио:</label>
-      <input type="text" id="studio" name="studio" placeholder="Въведете студио" required>
-  
-      <label for="image-url">Снимка (URL):</label>
-      <input type="url" id="image-url" name="image-url" placeholder="Въведете URL на снимка" required>
-  
+      <input
+        type="text"
+        id="studio"
+        formControlName="studio"
+        required
+        minlength="3"
+        placeholder="Студио"
+      />
+      @if (gameForm.get('studio')?.touched) {
+        @if (gameForm.get('studio')?.errors?.['required']) {
+          <div style="color: red">Студиото е задължително!</div>
+        }
+        @if (gameForm.get('studio')?.errors?.['minlength']) {
+          <div style="color: red">Студиото трябва да бъде поне 3 символа.</div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="image">Снимка (URL):</label>
+      <input
+        type="text"
+        id="image"
+        formControlName="image"
+        required
+        placeholder="URL за снимка"
+      />
+      @if (gameForm.get('image')?.touched) {
+        @if (gameForm.get('image')?.errors?.['required']) {
+          <div style="color: red">Снимката е задължителна!</div>
+        }
+        @if (gameForm.get('image')?.errors?.['pattern']) {
+          <div style="color: red">Моля, въведете валиден URL за снимка.</div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
       <label for="genre">Жанр:</label>
-      <select id="genre" name="genre">
-        <option value="Action">Action</option>
-        <option value="Adventure">Adventure</option>
-        <option value="RPG">RPG</option>
-        <option value="Strategy">Strategy</option>
-        <option value="Shooter">Shooter</option>
-        <option value="Simulation">Simulation</option>
-        <option value="Sports">Sports</option>
-        <option value="Racing">Racing</option>
-        <option value="Horror">Horror</option>
-        <option value="Puzzle">Puzzle</option>
+      <select id="genre" formControlName="genre" required>
+        <option value="action">Екшън</option>
+        <option value="adventure">Приключенски</option>
+        <option value="rpg">Ролеви игри</option>
+        <option value="strategy">Стратегия</option>
+        <option value="simulator">Симулатор</option>
+        <option value="sports">Спортни игри</option>
+        <option value="mobile">Мобилни игри</option>
+        <option value="moba">ММОРПГ</option>
+        <option value="puzzle">Пъзели</option>
+        <option value="shooter">Шутъри</option>
       </select>
-  
+      @if (gameForm.get('genre')?.touched) {
+        @if (gameForm.get('genre')?.errors?.['required']) {
+          <div style="color: red">Жанрът е задължителен!</div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
       <label for="description">Описание:</label>
-      <textarea id="description" name="description" placeholder="Въведете описание" required></textarea>
-  
-      <label for="video-url">Линк за видео (URL):</label>
-      <input type="url" id="video-url" name="video-url" placeholder="Въведете URL на видео">
-  
-      <button type="submit">Запази</button>
-    </form>
-  </div>
-  
+      <textarea
+        id="description"
+        formControlName="description"
+        required
+        minlength="20"
+        placeholder="Описание на играта"
+      ></textarea>
+      @if (gameForm.get('description')?.touched) {
+        @if (gameForm.get('description')?.errors?.['required']) {
+          <div style="color: red">Описанието е задължително!</div>
+        }
+        @if (gameForm.get('description')?.errors?.['minlength']) {
+          <div style="color: red">Описанието трябва да бъде поне 20 символа.</div>
+        }
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="videoLink">Линк за видео:</label>
+      <input
+        type="text"
+        id="videoLink"
+        formControlName="videoLink"
+        required
+        placeholder="URL за видео"
+      />
+      @if (gameForm.get('videoLink')?.touched) {
+        @if (gameForm.get('videoLink')?.errors?.['required']) {
+          <div style="color: red">Линкът за видео е задължителен!</div>
+        }
+        @if (gameForm.get('videoLink')?.errors?.['pattern']) {
+          <div style="color: red">Моля, въведете валиден URL за видео.</div>
+        }
+      }
+    </div>
+
+    <button type="submit" [disabled]="gameForm.invalid">Обновете играта</button>
+
+  </form>
+</div>

@@ -1,24 +1,34 @@
 <div class="search-container">
-    <input type="text" class="search-box" placeholder="Търсене на игри...">
-    <button class="search-button">Търсене</button>
-</div>
-
-<div class="games-container">
-    <div class="game-card">
-        <img src="../assets/images/sdsd.jpg" alt="Игра 1" class="game-image">
-        <h3 class="game-title">Игра 1</h3>
-        <button class="details-button">Подробности</button>
-    </div>
-
-    <div class="game-card"> 
-        <img src="../assets/images/dqsdsq.jpg" alt="Игра 2" class="game-image">
-        <h3 class="game-title">Игра 2</h3>
-        <button class="details-button">Подробности</button>
-    </div>
-
-    <div class="game-card">
-        <img src="../assets/images/Untitled.jpg" alt="Игра 3" class="game-image">
-        <h3 class="game-title">Игра 3</h3>
-        <button class="details-button">Подробности</button>
-    </div>
-</div>
+    <input
+      type="text"
+      class="search-box"
+      [value]="searchTerm"
+      placeholder="Търсене на игри..."
+      (input)="onSearchChange($event)" />
+    <button class="search-button" (click)="onSearch()">Търсене</button>
+  </div>
+  
+  <div class="games-container">
+    <!-- Показване на всички игри, когато няма търсене -->
+    @if (!searchTerm.trim()) {
+      @for (game of games; track game) {
+        <div class="game-card">
+          <img [src]="game.image" [alt]="game.name" class="game-image" />
+          <h3 class="game-title">{{ game.name }}</h3>
+          <button class="details-button" (click)="viewGameDetails(game.id)">Подробности</button>
+        </div>
+      }
+    }
+  
+    <!-- Показване на филтрираните игри след търсене -->
+    @if (searchTerm.trim()) {
+      @for (game of filteredGames; track game) {
+        <div class="game-card">
+          <img [src]="game.image" [alt]="game.name" class="game-image" />
+          <h3 class="game-title">{{ game.name }}</h3>
+          <button class="details-button" (click)="viewGameDetails(game.id)">Подробности</button>
+        </div>
+      }
+    }
+  </div>
+  

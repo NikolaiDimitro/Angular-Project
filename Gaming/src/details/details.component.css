@@ -1,18 +1,29 @@
+/* Общи стилове за страницата */
+body {
+  display: flex;
+  justify-content: center; /* Центриране по хоризонтала */
+  align-items: center; /* Центриране по вертикала */
+  min-height: 100vh; /* Осигурява, че страницата ще е поне с височината на екрана */
+  margin: 0;
+  background: #f4f4f4; /* Светъл фон за страницата */
+}
+
 /* Контейнер за цялата страница */
 .game-details-container {
-  padding: 20px;
-  margin-top: 50px; /* Разстояние между хедъра и контейнера */
-  max-width: 1000px;
-  margin: 100 auto; /* Центрира контейнера по хоризонтала */
+  padding: 150px;
+  max-width: 750px;
+  margin: 250px auto;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Центрира съдържанието по хоризонтала */
+  align-items: center;
   gap: 30px;
-  background: linear-gradient(135deg, #9ec9ff, #b19cd9, #f4bbff); /* Светъл градиент */
+  background: linear-gradient(135deg, #9ec9ff, #b19cd9, #f4bbff);
   border-radius: 10px;
   color: #333;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateX(-20px); /* Изместваме контейнера с 20px наляво */
 }
+
 
 /* Стилове за информацията за играта */
 .game-info {
@@ -99,4 +110,43 @@
 .game-video iframe {
   max-width: 100%;
   border-radius: 10px;
+}
+
+/* Стилове за бутоните "Редактирай" и "Изтрий" */
+.edit-delete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px; /* Добавяме малко разстояние между видеото и бутоните */
+}
+
+.edit-button, .delete-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-button {
+  background: #4CAF50;
+  color: white;
+}
+
+.delete-button {
+  background: #F44336;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #45a049;
+  transform: scale(1.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.delete-button:hover {
+  background: #e53935;
+  transform: scale(1.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }

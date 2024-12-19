@@ -1,86 +1,108 @@
-/* Контейнер за формата */
-.game-form-container {
-    padding: 80px 20px; /* Допълнително разстояние */
-    max-width: 700px; /* Увеличена широчина */
-    margin: 250px auto; /* Центриране с разстояние отгоре и отдолу */
-    background-color: #fff; /* Бял фон за формата */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Стилове за формата */
-  .game-form {
-    padding: 30px; /* Вътрешно разстояние */
-  }
-  
-  .game-form label {
-    display: block; /* Етикетите са блокови елементи */
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .game-form input,
-  .game-form select,
-  .game-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  /* Стил за бутона */
-  .game-form button {
+/* Контейнер за формата за редактиране */
+.edit-game-container {
+  padding: 80px 30px; /* Увеличено вътрешно разстояние */
+  max-width: 800px; /* По-широк контейнер */
+  margin: 200px auto; /* Центриране с повече разстояние отгоре */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Стилове за формата */
+form {
+  padding: 50px; /* Увеличено вътрешно разстояние */
+}
+
+label {
+  display: block;
+  margin-bottom: 12px; /* По-голямо разстояние под етикетите */
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 15px; /* По-големи полета за въвеждане */
+  margin-bottom: 30px; /* Повече разстояние между полетата */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #84d0ff;
+  box-shadow: 0 0 5px rgba(132, 208, 255, 0.5);
+  outline: none;
+}
+
+/* Стил за бутона */
+button {
+  background: linear-gradient(45deg, #84d0ff, #d39eff);
+  color: white;
+  padding: 15px 30px; /* По-голямо вътрешно разстояние */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 40px auto 0; /* Центриране и разстояние от полетата */
+  animation: gradient-animation 5s infinite; /* Анимация за преливане на цветове */
+}
+
+/* Ефект при задържане на бутона */
+button:hover {
+  transform: translateY(-3px); /* Леко повдигане */
+}
+
+/* Анимация за преливане на цветовете */
+@keyframes gradient-animation {
+  0% {
     background: linear-gradient(45deg, #84d0ff, #d39eff);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease, transform 0.3s ease;
-    display: block;
-    margin: 20px auto 0; /* Центриране и отстояние от полетата */
   }
-  
-  /* Ефект при задържане на бутона */
-  .game-form button:hover {
-    background: linear-gradient(45deg, #d39eff, #84d0ff);
-    transform: rotate(-10deg); /* Леко накланяне */
+  25% {
+    background: linear-gradient(45deg, #d39eff, #ff84b7);
   }
-  
-  /* Текстова област */
-  .game-form textarea {
-    height: 150px;
-    resize: vertical; /* Позволено преоразмеряване по височина */
+  50% {
+    background: linear-gradient(45deg, #ff84b7, #ffc484);
   }
-  
-  /* Dropdown меню */
-  .game-form select {
-    height: 40px;
+  75% {
+    background: linear-gradient(45deg, #ffc484, #84d0ff);
   }
-  
-  /* Стил за тялото */
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  100% {
+    background: linear-gradient(45deg, #84d0ff, #d39eff);
   }
-  
-  /* Хедър */
-  header {
-    text-align: center;
-    margin-bottom: 30px; /* Разстояние под хедъра */
-  }
-  
-  /* Футър */
-  footer {
-    text-align: center;
-    margin-top: 30px; /* Разстояние над футъра */
-    color: #777;
-    font-size: 14px;
-  }
-  
+}
+
+/* Текстова област */
+textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+/* Dropdown меню */
+select {
+  height: 50px;
+}
+
+/* Заглавие на формата */
+.edit-game-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 40px; /* По-голямо разстояние под заглавието */
+}
+
+/* Стилове за показване на грешки */
+div[style="color: red"] {
+  font-size: 14px;
+  margin-top: 5px;
+}

@@ -20,7 +20,7 @@ export class AuthService {
       if (user) {
         this.currentUserSubject.next({
           uid: user.uid,
-          email: user.email ?? '',
+          email: user.email ?? '', // Поставяме празен низ, ако email е undefined
           username: '', // Потребителското име ще се обновява по-късно от Firestore
         });
         this.isAuthenticatedSubject.next(true);

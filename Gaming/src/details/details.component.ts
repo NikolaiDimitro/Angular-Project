@@ -14,7 +14,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // И
 export class DetailsComponent implements OnInit {
   game: Game | null | undefined;
   newComment: string = '';  // Това е променливата за новия коментар
-  userId: string = 'someUserId';  // Това трябва да бъде действителният user ID от сесията или Firebase
+  userId: string | null = null;  // Позволява стойности null или string
   isOwner: boolean = false;  // Това трябва да се реши според логиката на приложението (например проверка за съвпадение на ownerId)
   userName: string = '';  // Това ще съдържа името на потребителя
   videoUrl: SafeResourceUrl = ''; // Променлива за безопасния видеолинк
@@ -28,35 +28,34 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const gameId = this.route.snapshot.paramMap.get('id'); // Вземане на gameId от URL параметрите
-
+    const gameId = this.route.snapshot.paramMap.get('id');
     if (gameId) {
-      // Ако gameId е валидно, извикваме сървиса за играта
       this.gameService.getGameById(gameId).subscribe((game) => {
         this.game = game;
-        this.isOwner = this.game?.createdBy === this.userId;  // Проверка дали потребителят е собственик на играта
-
-        // Ако има видеолинк, го санитизираме и проверяваме дали е от правилния тип
+        this.isOwner = this.game?.createdBy === this.userId; // Проверяваме дали създателят на играта е същият като текущия потребител
+        console.log(this.game?.createdBy);
+        console.log(this.userId);
+        console.log(this.isOwner);
+  
+        // Логика за видеото (ако има)
         if (this.game?.videoLink) {
-          // Проверяваме дали видеото е YouTube
           const videoUrl = this.game.videoLink;
           if (videoUrl.includes('youtube.com')) {
-            // Ако е YouTube линк, правим го безопасен за вграждане
             const embedUrl = videoUrl.replace('watch?v=', 'embed/');
-            this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl); // Санитизиране на URL-а
+            this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
           } else {
             console.error('Невалиден видеолинк');
           }
         }
       });
-    } else {
-      // Ако gameId е null или undefined, хвърляме грешка или предприемаме съответното действие
-      console.error('Game ID не е предоставен');
     }
 
-    // Вземаме името на потребителя от сървиза
-    this.userService.getUserNameById(this.userId).subscribe((name) => {
-      this.userName = name;
+    // Вземане на текущия потребител и извличане на UID
+    this.userService.currentUser$.subscribe(user => {
+      if (user && user.uid) {
+        this.userId = user.uid;  // Присвояваме UID само ако не е null или undefined
+        console.log(this.userId);  // Това е тестова проверка
+      }
     });
   }
 
@@ -65,7 +64,7 @@ export class DetailsComponent implements OnInit {
       // Проверка дали потребителят вече е харесал играта
       if (!this.game.likedByUsers.includes(this.userId)) {
         this.gameService.likeGame(this.game.id, this.userId).subscribe(() => {
-          if (this.game) {
+          if (this.game && this.userId) { // Проверка за userId преди да добавим
             this.game.likesCount++; // Увеличава броя на харесванията в локалната променлива
             this.game.likedByUsers.push(this.userId); // Добавя потребителя в масива с харесалите
           }
@@ -73,6 +72,7 @@ export class DetailsComponent implements OnInit {
       }
     }
   }
+  
 
   editGame(): void {
     // Редактиране на играта (пренасочване към форма за редактиране)
@@ -84,7 +84,7 @@ export class DetailsComponent implements OnInit {
   deleteGame(): void {
     if (this.game?.id) {
       this.gameService.deleteGame(this.game.id).subscribe(() => {
-        this.router.navigate(['/']);  // Пренасочване към началната страница след изтриването
+        this.router.navigate(['/catalog']);  // Пренасочване към началната страница след изтриването
       });
     }
   }
@@ -95,7 +95,7 @@ export class DetailsComponent implements OnInit {
         id: '',  // Може да е празно, ако сървърът генерира id
         content: this.newComment,
         timestamp: new Date().toISOString(), // Преобразуване на датата в ISO формат
-        userId: this.userId,  // Това трябва да е действителният потребителен ID
+        userId: this.userId ?? '',  // Ако userId е null, използваме празен стринг
         userName: this.userName  // Използваме потребителското име вместо ID
       };
       this.gameService.addCommentToGame(this.game.id, comment).subscribe(() => {

@@ -180,4 +180,16 @@ export class GameService {
       })
     );
   }
+
+  updateGame(gameId: string, updatedData: Partial<Game>): Observable<void> {
+    const gameDocRef = doc(this.firestore, 'games', gameId);
+    return from(updateDoc(gameDocRef, updatedData)).pipe(
+      catchError((error) => {
+        console.error('Error updating game:', error);
+        throw error;
+      })
+    );
+  }
+  
+
 }

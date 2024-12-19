@@ -41,9 +41,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Firebase config and sensitive environment files
-src/environments/*
-!src/environments/environment.prod.ts
-!src/environments/environment.ts
-
 # Prevent API keys and sensitive data from being pushed
