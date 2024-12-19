@@ -1,59 +1,67 @@
-# Gaming
+Game Point
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+Description
 
-## Development server
+Game Point is a virtual space where users can browse different games and their respective information, such as description, release year, studio, name, image, and video trailer.
 
-To start a local development server, run:
+Technologies
 
-```bash
-ng serve
-```
+Angular
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Firebase (2 projects: one for users, another for games)
 
-## Code scaffolding
+TypeScript
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+RxJS
 
-```bash
-ng generate component component-name
-```
+Installation and Setup
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Install Angular CLI if you haven't already:
 
-```bash
-ng generate --help
-```
 
-## Building
+npm install -g @angular/cli
 
-To build the project run:
 
-```bash
-ng build
-```
+Clone the repository:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+git clone <https://github.com/NikolaiDimitro/Angular-Project.git>
 
-## Running unit tests
+Install dependencies:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+npm install
 
-```bash
-ng test
-```
+Configure Firebase keys (follow Firebase documentation for setup).
 
-## Running end-to-end tests
+Role of Firebase
 
-For end-to-end (e2e) testing, run:
+Firebase Project 1: Stores user data (authentication).
 
-```bash
-ng e2e
-```
+Firebase Project 2: Stores game data and related information.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Project Structure
 
-## Additional Resources
+In the src folder, the following directories are organized:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Interfaces
+
+Services
+
+Guards
+
+Components for Login and Registration
+
+Catalog (for the game list)
+
+Home Page
+
+Search Page
+
+Game Details Page
+
+Game Creation Page
+
+Game Edit Page
+
+404 Page
+
+App Component: Includes the header and footer components. The header contains navigation buttons.
