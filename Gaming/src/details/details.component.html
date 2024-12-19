@@ -1,13 +1,9 @@
-<!-- Контейнер за информацията за играта -->
 <div class="game-details-container">
-  <!-- Информация за играта -->
   <div class="game-info">
-    <!-- Снимка на играта отляво -->
     <div class="game-image-container">
       <img [src]="game?.image" alt="Game Image" class="game-image" />
     </div>
 
-    <!-- Детайли за играта отдясно -->
     <div class="game-details">
       <h2 class="game-title">{{ game?.name }}</h2>
       <p><strong>Жанр:</strong> {{ game?.genre }}</p>
@@ -17,7 +13,6 @@
         <strong>Описание:</strong> {{ game?.description }}
       </p>
 
-      <!-- Бутон за харесване -->
       @if (!isOwner) {
         <div class="like-button-container">
           <button class="like-button" (click)="likeGame()">👍 Харесва ми!</button>
@@ -27,13 +22,11 @@
     </div>
   </div>
 
-  <!-- Видеото за играта -->
   <div class="game-video">
     <h3 class="video-title">Вижте видеото за играта:</h3>
     <iframe width="560" height="315" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Бутоните за редактиране и изтриване, само ако потребителят е създател -->
   @if (isOwner) {
     <div class="edit-delete-buttons">
       <button class="edit-button" (click)="editGame()">Редактирай</button>

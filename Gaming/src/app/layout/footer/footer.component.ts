@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Renderer2, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
-  standalone: true,
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrls: ['./footer.component.css']
 })
-export class FooterComponent {
+export class FooterComponent implements AfterViewInit {
 
-  ngAfterViewInit() {
-    const tiltElements = document.querySelectorAll('.tilt-effect');
-    tiltElements.forEach((element) => {
-      element.addEventListener('mouseover', () => {
-        const randomAngle = (Math.random() * 20 - 10).toFixed(1); // Наклон от -10 до 10 градуса
-        (element as HTMLElement).style.setProperty('--tilt-angle', `${randomAngle}deg`);
+  @ViewChildren('.tilt-effect') tiltElements!: QueryList<ElementRef>;
+
+  constructor(private renderer: Renderer2) {}
+
+  ngAfterViewInit(): void {
+    this.tiltElements.forEach((element) => {
+      this.renderer.listen(element.nativeElement, 'mouseover', () => {
+        const randomAngle = (Math.random() * 20 - 10).toFixed(1);
+        this.renderer.setStyle(element.nativeElement, '--tilt-angle', `${randomAngle}deg`);
       });
     });
   }
-
 }

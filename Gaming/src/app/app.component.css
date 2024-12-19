@@ -17,10 +17,10 @@ app-header {
 }
 
 app-footer {
-    background-color: transparent; /* Прави фона прозрачен */
+    background-color: transparent;
     padding: 10px 20px;
-    color: inherit; /* Наследява цвета на текста от основния стил */
+    color: inherit; 
     text-align: center;
-    border-top: none; /* Премахва всякакви граници */
+    border-top: none; 
   }
   

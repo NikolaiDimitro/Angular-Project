@@ -12,7 +12,7 @@ import { GameService } from '../service/game.service';
 })
 export class EditComponent implements OnInit {
   gameForm: FormGroup;
-  gameId: string = ''; // ID на играта
+  gameId: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -32,15 +32,14 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gameId = this.route.snapshot.paramMap.get('id') || '';
 
-    // Зареждаме данните за играта
+    this.gameId = this.route.snapshot.paramMap.get('id') || '';
     this.gameService.getGameById(this.gameId).subscribe((game: Game | null) => {
       if (game) {
         this.gameForm.patchValue(game);
       } else {
         console.error('Играта не беше намерена.');
-        this.router.navigate(['/catalog']); // Пренасочваме при грешка
+        this.router.navigate(['/catalog']);
       }
     });
   }
@@ -54,7 +53,7 @@ export class EditComponent implements OnInit {
       this.gameService.updateGame(this.gameId, updatedGame).subscribe(
         () => {
           console.log('Играта беше успешно обновена.');
-          this.router.navigate(['/details', this.gameId]); // Пренасочваме към страницата на играта
+          this.router.navigate(['/details', this.gameId]);
         },
         (error) => {
           console.error('Грешка при обновяването на играта:', error);

@@ -11,7 +11,6 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 })
 export class AuthService {
   private auth = getAuth(firebaseAppUsers);
-  private db = getFirestore(firebaseAppUsers); // Firestore инстанция
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private currentUserSubject = new BehaviorSubject<User | null>(null);
 
@@ -20,8 +19,8 @@ export class AuthService {
       if (user) {
         this.currentUserSubject.next({
           uid: user.uid,
-          email: user.email ?? '', // Поставяме празен низ, ако email е undefined
-          username: '', // Потребителското име ще се обновява по-късно от Firestore
+          email: user.email ?? '', 
+          username: '',
         });
         this.isAuthenticatedSubject.next(true);
       } else {
@@ -85,25 +84,6 @@ export class AuthService {
       catchError((error) => {
         console.error('Грешка при логаут:', error);
         throw error;
-      })
-    );
-  }
-
-  // Функция за извличане на името на потребителя по ID
-  getUserNameById(userId: string): Observable<string> {
-    const userDocRef = doc(this.db, 'users', userId);  // 'users' е колекцията в Firestore
-    return from(getDoc(userDocRef)).pipe(
-      map((docSnap) => {
-        if (docSnap.exists()) {
-          const userData = docSnap.data() as User;  // Типизираме данните като User
-          return userData.username || 'Неизвестен потребител';  // Достъп до username
-        } else {
-          return 'Неизвестен потребител';  // Връща стойност, ако потребителят не съществува
-        }
-      }),
-      catchError((error) => {
-        console.error('Грешка при извличане на името:', error);
-        return 'Неизвестен потребител';  // Връща стойност по подразбиране при грешка
       })
     );
   }

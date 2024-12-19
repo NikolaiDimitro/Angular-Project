@@ -11,7 +11,7 @@ import { Router } from '@angular/router'; // Импортираме Router
 })
 export class CatalogComponent {
   private gameService = inject(GameService);
-  private router = inject(Router);  // Внедряваме Router
+  private router = inject(Router);  
   games: Game[] = [];
 
   constructor() {
@@ -24,8 +24,7 @@ export class CatalogComponent {
     });
   }
 
-  // Метод за навигация към страницата с подробности за игра
   viewDetails(gameId: string): void {
-    this.router.navigate(['/details/', gameId]); // Навигиране към детайлите на играта
+    this.router.navigate(['/details/', gameId]);
   }
 }

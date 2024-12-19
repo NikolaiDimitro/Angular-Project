@@ -1,25 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  Firestore,
-  collection,
-  addDoc,
-  doc,
-  getDoc,
-  updateDoc,
-  arrayUnion,
-  increment,
-  getFirestore,
-  DocumentReference,
-  orderBy,
-  query,
-  getDocs,
-  limit,
-  deleteDoc,
-} from 'firebase/firestore';
+import { Firestore, collection, addDoc, doc, getDoc, updateDoc, arrayUnion, increment, getFirestore, DocumentReference, orderBy, query, getDocs, limit, deleteDoc } from 'firebase/firestore';
 import { Observable, from } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Game } from '../interfaces/gameInterface';
-import { UserComment } from '../interfaces/comment';
 import { firebaseAppGames } from '../environments/firebase-config';
 
 @Injectable({
@@ -97,38 +80,6 @@ export class GameService {
     );
   }
 
-  addCommentToGame(gameId: string, comment: UserComment): Observable<void> {
-    const gameDocRef = doc(this.firestore, 'games', gameId);
-    return from(
-      updateDoc(gameDocRef, {
-        comments: arrayUnion(comment),
-        commentsCount: increment(1),
-      })
-    ).pipe(
-      catchError((error) => {
-        console.error('Error adding comment to game:', error);
-        throw error;
-      })
-    );
-  }
-
-  getCommentsForGame(gameId: string): Observable<UserComment[]> {
-    const gameDocRef = doc(this.firestore, 'games', gameId);
-    return from(getDoc(gameDocRef)).pipe(
-      map((docSnap) => {
-        if (docSnap.exists()) {
-          const gameData = docSnap.data() as Game;
-          return gameData.comments || [];
-        }
-        return [];
-      }),
-      catchError((error) => {
-        console.error('Error getting comments for game:', error);
-        throw error;
-      })
-    );
-  }
-
   deleteGame(gameId: string): Observable<void> {
     const gameDocRef = doc(this.firestore, 'games', gameId);
     return from(deleteDoc(gameDocRef)).pipe(
@@ -160,27 +111,6 @@ export class GameService {
     );
   }
 
-  getTopCommentedGames(limitNumber: number): Observable<Game[]> {
-    const gamesQuery = query(
-      this.gamesCollectionRef,
-      orderBy('commentsCount', 'desc'),
-      limit(limitNumber)
-    );
-    return from(getDocs(gamesQuery)).pipe(
-      map((querySnapshot) => {
-        const games: Game[] = [];
-        querySnapshot.forEach((docSnap) => {
-          games.push({ id: docSnap.id, ...docSnap.data() } as Game);
-        });
-        return games;
-      }),
-      catchError((error) => {
-        console.error('Error getting top commented games:', error);
-        throw error;
-      })
-    );
-  }
-
   updateGame(gameId: string, updatedData: Partial<Game>): Observable<void> {
     const gameDocRef = doc(this.firestore, 'games', gameId);
     return from(updateDoc(gameDocRef, updatedData)).pipe(
@@ -190,6 +120,4 @@ export class GameService {
       })
     );
   }
-  
-
 }

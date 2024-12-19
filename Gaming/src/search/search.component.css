@@ -1,16 +1,14 @@
-/* Стилове за полето за търсене */
 .search-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 150px; /* Разстояние от хедъра */
+    margin-top: 150px;
     padding: 10px;
     width: 100%;
   }
   
-  /* Полето за търсене */
   .search-box {
-    width: 60%; /* Ширина на полето за търсене */
+    width: 60%; 
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
@@ -18,7 +16,6 @@
     margin-right: 10px;
   }
   
-  /* Бутонът за търсене */
   .search-button {
     padding: 10px 20px;
     font-size: 16px;
@@ -34,15 +31,13 @@
     background: linear-gradient(135deg, #d76b6b, #fa8484);
   }
   
-  /* Стилове за контейнера на игрите */
   .games-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 20px; /* Разстояние от полето за търсене */
+    margin-top: 20px;
   }
   
-  /* Стилове за всяка игра (резултат) */
   .game-card {
     background: linear-gradient(135deg, #84fab0, #8fd3f4);
     border-radius: 10px;
@@ -52,11 +47,10 @@
     transition: transform 0.3s ease;
     margin-bottom: 20px;
     min-height: 300px;
-    width: calc(33.33% - 20px); /* 3 игри на ред */
-    margin-top: 20px; /* Разстояние от полето за търсене */
+    width: calc(33.33% - 20px);
+    margin-top: 20px; 
   }
   
-  /* Стилове за изображението на играта */
   .game-image {
     width: 100%;
     height: auto;
@@ -64,7 +58,6 @@
     margin-bottom: 10px;
   }
   
-  /* Стилове за заглавието на играта */
   .game-title {
     font-size: 18px;
     font-weight: bold;
@@ -72,7 +65,6 @@
     margin-bottom: 8px;
   }
   
-  /* Стилове за бутона "Подробности" */
   .details-button {
     background: linear-gradient(135deg, #fa8484, #d76b6b);
     color: white;
@@ -93,10 +85,9 @@
     }
   }
   
-  /* Мобилен изглед */
   @media screen and (max-width: 768px) {
     .game-card {
-      width: 100%; /* 1 игра на ред на мобилни устройства */
+      width: 100%;
       min-height: 280px;
     }
   
@@ -113,23 +104,20 @@
     }
   
     .search-box {
-      width: 80%; /* Ширина на полето за търсене при мобилен изглед */
+      width: 80%;
     }
   }
   
-  /* Таблетен изглед (до 1024px) */
   @media screen and (max-width: 1024px) {
     .game-card {
-      width: calc(50% - 20px); /* 2 игри на ред на таблети */
+      width: calc(50% - 20px);
       min-height: 300px;
     }
   }
   
-  /* Десктоп изглед */
   @media screen and (min-width: 1025px) {
     .game-card {
-      width: calc(33.33% - 20px); /* 3 игри на ред на десктопи */
+      width: calc(33.33% - 20px); 
       min-height: 320px;
     }
   }
-  

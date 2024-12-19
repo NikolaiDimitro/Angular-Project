@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Game } from '../interfaces/gameInterface';
 import { GameService } from '../service/game.service';
-import { AuthService } from '../service/request.service'; // Добавяме AuthService
+import { AuthService } from '../service/request.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,12 +13,12 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent {
   gameForm: FormGroup;
-  userID: string = ''; // За съхранение на текущото userID
+  userID: string = '';
 
   constructor(
     private fb: FormBuilder,
     private gameService: GameService,
-    private authService: AuthService, // Взимаме AuthService
+    private authService: AuthService,
     private router: Router
   ) {
     this.gameForm = this.fb.group({
@@ -31,10 +31,9 @@ export class CreateComponent {
       videoLink: ['', [Validators.required, Validators.pattern('https?://.+')]],
     });
 
-    // Взимаме текущото userID от AuthService
     this.authService.currentUser$.subscribe((user) => {
       if (user) {
-        this.userID = user.uid ?? ''// Запазваме userID
+        this.userID = user.uid ?? ''
       }
     });
   }
@@ -43,13 +42,13 @@ export class CreateComponent {
     if (this.gameForm.valid && this.userID) {
       const game: Game = {
         ...this.gameForm.value,
-        createdBy: this.userID, // Добавяме userID на създателя
+        createdBy: this.userID,
       };
 
       this.gameService.addGame(game).subscribe(
         (docRef) => {
           console.log('Играта беше успешно добавена:', docRef);
-          this.router.navigate(['']); // Пренасочваме към началната страница
+          this.router.navigate(['']);
         },
         (error) => {
           console.error('Грешка при добавянето на играта:', error);

@@ -11,8 +11,8 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfigGames)), // Правилно добавяне на Firebase
-    provideFirestore(() => getFirestore()) // Правилно добавяне на Firestore
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfigGames)),
+    provideFirestore(() => getFirestore())
   ]
 };
 

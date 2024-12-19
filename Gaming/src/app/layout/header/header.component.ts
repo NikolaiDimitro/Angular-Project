@@ -10,13 +10,13 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  isAuth: boolean = false; // Състоянието на автентикацията
+  isAuth: boolean = false; 
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
-      console.log('Is authenticated:', isAuthenticated); // За да провериш дали се актуализира
+      console.log('Is authenticated:', isAuthenticated);
       this.isAuth = isAuthenticated;
     });
   }
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.authService.logoutUser().subscribe({
       next: () => {
-        this.router.navigate(['']); // Навигиране към логин страницата след логаут
+        this.router.navigate(['']);
       },
       error: (err) => {
         console.error('Грешка при логаут:', err);

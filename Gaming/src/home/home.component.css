@@ -31,8 +31,8 @@ body {
 
 .sections-overview {
   display: flex;
-  justify-content: center; /* Центрира секциите по хоризонтала */
-  gap: 20px; /* Намалено разстояние между секциите */
+  justify-content: center;
+  gap: 20px;
   padding: 40px 0;
 }
 
@@ -100,7 +100,7 @@ body {
   .sections-overview {
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Намалено разстояние при малки екрани */
+    gap: 15px;
   }
 
   .section-card {

@@ -1,41 +1,31 @@
 <div class="background-image">
   <div class="home-container">
-    <!-- Видеото между секцията Добре дошли и основните секции -->
     <div class="image-section">
-      <iframe
-        class="background-video"
-        src="https://www.youtube.com/embed/9blwxyOXuRI?autoplay=1&mute=1&loop=1&playlist=9blwxyOXuRI"
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        allowfullscreen
-      ></iframe>
+      <iframe class="background-video"
+        src="https://www.youtube.com/embed/9blwxyOXuRI?autoplay=1&mute=1&loop=1&playlist=9blwxyOXuRI" frameborder="0"
+        allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
 
-    <!-- Секция за Най-харесвани игри -->
     <div class="sections-overview">
       <div class="section-card">
         <h2>Най - харесвани</h2>
 
-        <!-- Проверка дали има игри -->
         @if(topLikedGames && topLikedGames.length > 0) {
-          <div class="game-subsection">
-            @for(game of topLikedGames.slice(0, 3); track game) {
-              <div class="game-card">
-                <img [src]="game.image" [alt]="game.name" class="game-image" />
-                <p>{{ game.name }}</p>
-                <button
-                  class="details-btn"
-                  (click)="game.id ? viewGameDetails(game.id) : null"
-                >
-                  Подробности
-                </button>
-              </div>
-            }
+        <div class="game-subsection">
+          @for(game of topLikedGames.slice(0, 3); track game) {
+          <div class="game-card">
+            <img [src]="game.image" [alt]="game.name" class="game-image" />
+            <p>{{ game.name }}</p>
+            <button class="details-btn" (click)="game.id ? viewGameDetails(game.id) : null">
+              Подробности
+            </button>
           </div>
+          }
+        </div>
         } @else {
-          <div>
-            <p>Няма налични игри за показване.</p>
-          </div>
+        <div>
+          <p>Няма налични игри за показване.</p>
+        </div>
         }
       </div>
     </div>

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   @ViewChild('loginForm') form: NgForm | undefined;
 
-  constructor(private api: AuthService, private router: Router) {}
+  constructor(private api: AuthService, private router: Router) { }
 
   formSubmitHandler() {
     const form = this.form!;
@@ -30,7 +30,6 @@ export class LoginComponent {
 
     this.api.loginUser(user).subscribe({
       next: () => {
-        // След успешен вход, навигирай към началната страница
         this.router.navigate(['']);
         form.reset();
       },

@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = () => {
   return authService.isAuthenticated$.pipe(
     map((isAuthenticated) => {
       if (!isAuthenticated) {
-        router.navigate(['/login']); // Пренасочване към страницата за вход
+        router.navigate(['/login']);
         return false;
       }
       return true;

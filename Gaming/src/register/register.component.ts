@@ -1,4 +1,3 @@
-// register.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,7 +15,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router:Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(3)]],
@@ -48,8 +47,6 @@ export class RegisterComponent {
     const user = this.registerForm.value;
     this.authService.registerUser(user).subscribe({
       next: (user) => {
-        console.log('Регистриран потребител с UID:', user.uid); // user е тип User
-        // Може да извършиш допълнителни действия след регистрация
         this.router.navigate(['']);
       },
       error: (err) => {
